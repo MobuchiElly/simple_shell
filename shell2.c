@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+#include "shell.h"
 
 #define MAX_INPUT_SIZE 1024
 
@@ -10,7 +7,7 @@ int main() {
     size_t input_size = 0;
     while (1) {
         char *prompt = "#cisfun$ ";
-        write(STDOUT_FILENO, prompt, strlen(prompt));
+        write(STDOUT_FILENO, prompt, _strlen(prompt));
 
         if (getline(&input, &input_size, stdin) == -1) {
             // Error reading input
@@ -19,10 +16,10 @@ int main() {
         }
 
         // Remove newline character from input
-        input[strcspn(input, "\n")] = '\0';
+        input[_strcspn(input, "\n")] = '\0';
 
         // Exit program if user types "exit"
-        if (strcmp(input, "exit") == 0) {
+        if (_strcmp(input, "exit") == 0) {
             break;
         }
 

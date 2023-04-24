@@ -12,9 +12,11 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <errno.h>
+#include <stddef.h>
 
 
 int _strlen(const char *s);
-
+int _strcmp(const char *s1, const char *s2);
+size_t _strcspn(const char *s, const char *reject);
 
 #endif
