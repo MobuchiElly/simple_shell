@@ -1,35 +1,43 @@
 #include "shell.h"
 
-#define MAX_INPUT_SIZE 1024
+/**
+ * main - main function for the shell loop
+ *
+ * Return: return 0 success
+ */
 
-int main() {
-    char *input = NULL;
-    size_t input_size = 0;
-    while (1) {
-        char *prompt = "#cisfun$ ";
-        write(STDOUT_FILENO, prompt, _strlen(prompt));
+int main(void)
+{
+	char *text = NULL;
+	size_t text_size = 0;
 
-        if (getline(&input, &input_size, stdin) == -1) {
-            // Error reading input
-            perror("getline");
-            exit(EXIT_FAILURE);
-        }
+	while (1)
+	{
+		char *loop_prompt = "#cisfun$ ";
 
-        // Remove newline character from input
-        input[_strcspn(input, "\n")] = '\0';
+		write(STDOUT_FILENO, loop_prompt, _strlen(loop_prompt));
 
-        // Exit program if user types "exit"
-        if (_strcmp(input, "exit") == 0) {
-            break;
-        }
+		if (getline(&text, &text_size, stdin) == -1)
+		{
+			perror("getline error");
+			exit(EXIT_FAILURE);
+		}
 
-        // Execute command using system()
-        if (system(input) == -1) {
-            perror("system");
-            exit(EXIT_FAILURE);
-        }
-    }
+		text[_strcspn(text, "\n")] = '\0';
 
-    free(input);
-    return 0;
+		if (_strcmp(text, "exit") == 0)
+		{
+			free(text);
+			exit(EXIT_SUCCESS);
+		}
+
+		if (system(text) == -1)
+		{
+			perror("system");
+			exit(EXIT_FAILURE);
+		}
+	}
+
+	free(text);
+	return (0);
 }
