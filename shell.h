@@ -16,9 +16,13 @@
 #include <errno.h>
 #include <stddef.h>
 
-
 int _strlen(const char *s);
-int _strcmp(const char *s1, const char *s2);
 size_t _strcspn(const char *s, const char *reject);
+char *_getenv(const char *name);
+char *_strcat(char *dest, const char *src);
+int _strcmp(const char *a, const char *b);
+char *_strcpy(char *dest, const char *src);
+size_t _strcspn(const char *a, const char *b);
+int _strncmp(const char *s1, const char *s2, size_t n);
 
 #endif
