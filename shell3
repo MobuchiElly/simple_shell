@@ -6,7 +6,7 @@
  * Return: return 0 success
  */
 
-int main(void)
+int main(int argc, char *argv[], char *env[])
 {
         char *text = NULL;
         size_t text_size = 0;

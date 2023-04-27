@@ -26,7 +26,7 @@ char *_getenv(const char *name)
 	}
 
 	if (path == NULL)
-		return (NULL);
+	return (NULL);
 
 	result = malloc(sizeof(char) * _strlen(path) + 1);
 
