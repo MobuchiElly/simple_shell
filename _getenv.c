@@ -9,37 +9,37 @@
 
 char *_getenv(const char *name)
 {
-        extern char **environ;
+	extern char **environ;
 	char *result;
 
-        char *path = NULL;
-        int i = 0, j = 0, k = 0;
-        size_t len = _strlen(name);
+	char *path = NULL;
+	int i = 0, j = 0, k = 0;
+	size_t len = _strlen(name);
 
-        while (environ[i] != NULL)
-        {
-                if (_strncmp(name, environ[i], len) == 0 && environ[i][len] == '=')
-                {
-                        path = environ[i] + len + 1;
-                        break;
-                }
-                i++;
-        }
+	while (environ[i] != NULL)
+	{
+		if (_strncmp(name, environ[i], len) == 0 && environ[i][len] == '=')
+		{
+			path = environ[i] + len + 1;
+			break;
+		}
+		i++;
+	}
 
-        if (path == NULL)
-                return (NULL);
+	if (path == NULL)
+		return (NULL);
 
-        result = malloc(sizeof(char) * _strlen(path) + 1);
+	result = malloc(sizeof(char) * _strlen(path) + 1);
 
-        while (path[j])
-        {
-                if (path[j] == ':')
-                {
-                        result[k++] = '/';
-                }
-                result[k++] = path[j++];
-        }
-        result[k] = '\0';
+	while (path[j])
+	{
+		if (path[j] == ':')
+		{
+			result[k++] = '/';
+		}
+		result[k++] = path[j++];
+	}
+	result[k] = '\0';
 
-        return (result);
+	return (result);
 }
