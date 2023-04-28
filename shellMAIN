@@ -8,6 +8,8 @@
 
 int main(void)
 {
+	char *command;
+
 	char *text = NULL;
 	size_t text_size = 0;
 
@@ -15,8 +17,10 @@ int main(void)
 	{
 		char *loop_prompt = "$ ";
 
-		write(STDOUT_FILENO, loop_prompt, _strlen(loop_prompt));
-
+		if (isatty(STDIN_FILENO))
+		{
+			write(STDOUT_FILENO, loop_prompt, _strlen(loop_prompt));
+		}
 		if (getline(&text, &text_size, stdin) == -1)
 		{
 			perror("getline error");
@@ -30,14 +34,32 @@ int main(void)
 			free(text);
 			exit(EXIT_SUCCESS);
 		}
+		if (!isatty(STDIN_FILENO))
+		{
+			while (*text == ' ' || *text == '\t')
+			{
+				text++;
+			}
+			if (system(text) == -1)
+			{
+				perror("system");
+				exit(EXIT_FAILURE);
+			}
+			free(text);
+			exit(EXIT_SUCCESS);
+		}
 
-		if (system(text) == -1)
+		command = strtok(text, " ");
+		if (_strcmp(command, "ls") == 0)
+		{
+			command = "/bin/ls";
+		}
+		if (system(command) == -1)
 		{
 			perror("system");
 			exit(EXIT_FAILURE);
 		}
 	}
-
 	free(text);
 	return (0);
 }
