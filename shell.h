@@ -3,6 +3,8 @@
 
 #define MAX_INPUT_SIZE 1024
 
+extern char **environ;
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <dirent.h>
