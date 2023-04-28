@@ -13,7 +13,7 @@ int main(void)
 
 	while (1)
 	{
-		char *loop_prompt = "#cisfun$ ";
+		char *loop_prompt = "$ ";
 
 		write(STDOUT_FILENO, loop_prompt, _strlen(loop_prompt));
 
