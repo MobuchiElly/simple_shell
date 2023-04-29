@@ -26,5 +26,9 @@ int _strcmp(const char *a, const char *b);
 char *_strcpy(char *dest, const char *src);
 size_t _strcspn(const char *a, const char *b);
 int _strncmp(const char *s1, const char *s2, size_t n);
+void print_loop_prompt(void);
+char *read_command(void);
+void run_command(char *command);
+void process_input(char *text);
 
 #endif
